@@ -1,7 +1,6 @@
 import {createContext, useState, useEffect} from 'react';
 import { createUserWithEmailAndPassword, signIn, onAuthStateChanged, signInWithEmailAndPassword, updateProfile, signOut, sendPasswordResetEmail } from "firebase/auth";
-import {auth} from '../firebase';
-
+import {auth} from '../firebase'; 
 const AuthContext = createContext({});
 
 export const AuthProvider = ({children}) =>{
@@ -48,9 +47,7 @@ export const AuthProvider = ({children}) =>{
    }
   
   }
-  onSignUp = ()=>{
-    console.log('Sign Up pressed')
-  }
+ 
   
   const googleSignIn = () =>{
     // const signInWithGoogle =()=>{
@@ -82,26 +79,31 @@ export const AuthProvider = ({children}) =>{
 
 
 
-const onRegister = async (e)=>{
-  e.preventDefault();
+const onRegister = async ()=>{
+ 
   
-  e.preventDefault();
+
   const data = {registerEmail, registerPassword, confirmPassword}
   console.log(data);
+ if(registerPassword === confirmPassword){
   try{
-   await createUser(registerEmail, registerPassword).then((userInfo)=>{
-     const user = userInfo.user;
-     console.log(user)
-   })
-   
-   setRegisterEmail("")
-   setRegisterPassword("")
-  console.log('test')
-   setConfirmPassword("")
-  }
-  catch(err){
-   console.error(err);
-  }
+    await createUser(registerEmail, registerPassword).then((userInfo)=>{
+      const user = userInfo.user;
+      console.log("test")
+    })
+    
+    setRegisterEmail("")
+    setRegisterPassword("")
+   console.log('test')
+    setConfirmPassword("")
+   }
+   catch(err){
+    console.error(err);
+   }
+ } else {
+  console.log(registerPassword);
+  console.log(setConfirmPassword);
+ }
 }  
 
 /* Reset Password */
@@ -123,7 +125,8 @@ const getUser = ()=>{
     return <AuthContext.Provider value={{handleContainerPress,
 email, setEmail, password, setPassword, user, setUser, registerEmail, setRegisterEmail, googleSignIn,
 confirmPassword, setConfirmPassword, resetEmail,setRegisterEmail, onSignIn, onForgotPassword, 
-onSignUp, updateUser, logOut, onRegister, onAuthStateChanged, onRegister, onReturn, onReset, signIn, getUser
+ updateUser, logOut, onRegister, onAuthStateChanged, onRegister, onReturn, onReset, signIn, getUser,
+  registerPassword, setRegisterPassword
     }}>{children}</AuthContext.Provider>
 }
 

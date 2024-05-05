@@ -1,30 +1,38 @@
 import { StyleSheet, Text, View, Image, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Pressable } from 'react-native'
 import React,{useContext} from 'react'
 import CustomInput from '../shared/CustomInput';
+import AuthContext from '../context/AuthContext';
 
+export default function SignUpScreen({navigation}) {
+  const {registerEmail, setRegisterEmail, registerPassword, 
+         setRegisterPassword, confirmPassword, setConfirmPassword,
+         onRegister} = useContext(AuthContext);  
 
-export default function SignUpScreen() {
-
+         const createUserAccount = async ()=>{
+        await   onRegister();
+          navigation.navigate("SignIn")
+         }
   return (
     <KeyboardAvoidingView style={{flex: 1}}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View style={styles.main}>
        <Text style={styles.title}>Create account</Text>     
        <CustomInput style={styles.input}
-      
-     
+      value={registerEmail}
+      setValue={setRegisterEmail}
        placeholder='E-mail'/>
        <CustomInput style={styles.input}
        placeholder='password'
-      
-      
+       value={registerPassword}
+       setValue={setRegisterPassword}
        secureTextEntry={true}/>
       <CustomInput style={styles.input}
        placeholder='Confirm Password'
-      
+       value={confirmPassword}
+       setValue={setConfirmPassword}
        secureTextEntry={true}/>      
       <Pressable style={styles.button}
-     >
+      onPress={createUserAccount}>
         <Text style={styles.text}>Create Account</Text>
       </Pressable>
       </View> 

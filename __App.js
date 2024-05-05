@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import SignInScreen from './screens/SignInScreen';
 import {useState} from 'react';
+import MovieDetailScreen from './screens/MovieDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ export default function App() {
           // Display HomeScreen if signed in
           <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
         )}
+         <Stack.Screen name="MovieDetailScreen" component={MovieDetailScreen} />
         </Stack.Navigator>
     </NavigationContainer>
   );

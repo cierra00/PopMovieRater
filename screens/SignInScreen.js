@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView,Platform, TouchableWithoutFeedback, Keyboard,  Pressable, Image, getUser, currentUser } from 'react-native'
+import { StyleSheet, Text, View, KeyboardAvoidingView,Platform, TouchableWithoutFeedback, Keyboard,  Pressable, Image,} from 'react-native'
 import bg from '../assets/login-img.jpg'
 import { FontAwesome } from '@expo/vector-icons';
 import CustomInput from '../shared/CustomInput';
@@ -10,11 +10,11 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function SignInScreen({isloggedIn, setIsLoggedIn}) {
+export default function SignInScreen({route, navigation}) {
+ const {setIsLoggedIn} = route.params;
+  const {signInWithGoogle, onforgotPassword, onSignIn,  email, setEmail, password, setPassword} = useContext(AuthContext);
 
-  const {signInWithGoogle, onforgotPassword, onSignIn, onSignUp, email, setEmail, password, setPassword, getUser} = useContext(AuthContext);
-// const { userId } = useContext(AuthContext);
-const navigation = useNavigation();
+
   
 const handleSignIn = async (e) => {
   e.preventDefault();
@@ -24,6 +24,7 @@ const handleSignIn = async (e) => {
   setIsLoggedIn(true);
   } catch (err) {
     console.error(err);
+    setIsLoggedIn(false);
   }
 };
   return (
@@ -34,7 +35,7 @@ const handleSignIn = async (e) => {
       <View style={styles.main}>       
        <Image source={bg}  style={styles.bg}/>
        <Text style={styles.title}>Movie Rating</Text>
-       <Text>{`this is a user: ${currentUser}`}</Text>
+       {/* <Text>{`this is a user: ${currentUser}`}</Text> */}
       <CustomInput style={styles.input}
       value={email}
       setValue={setEmail}
@@ -58,7 +59,7 @@ const handleSignIn = async (e) => {
        <Text style={styles.text}>Sign in with Google</Text>
       </Pressable>
       <View style={{flex: 1, flexDirection: 'row'}}>
-      <Pressable onPress={onSignUp}       >
+      <Pressable onPress={()=> navigation.navigate("SignUp")}       >
         <Text style={{color: 'purple'}}>Sign Up</Text>
       </Pressable>
       <View style={{width: 20}} />

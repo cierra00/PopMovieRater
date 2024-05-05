@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View, Image, FlatList} from 'react-native'
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useNavigation} from 'react'
 import Stars from '../shared/Stars'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import MovieDetailScreen from './MovieDetailScreen';
 
-export default function MovieListScreen() {
+export default function MovieListScreen({navigation}) {
 
   const [movies, setMovies] = useState('');
+  const [rating, setRating]= useState('');
   
  
  
@@ -47,20 +50,20 @@ return (
       data={movies}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item, index }) => (
-        <View style={styles.item}>
+        <TouchableOpacity style={styles.item}
+        onPress={()=> navigation.navigate('MovieDetailScreen', {title: item.title, posterPath: item.poster_path})}
+        >
           <Image
             source={{ uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}` }}
             style={styles.poster}
           />
           <View>
           <Text style={styles.title}>{`${index + 1}. ${item.title}`}</Text>
-          <Text>{item.vote_average/2}</Text>
-          <Stars />
-          
-          </View>
-          
+          <Stars title="Average Rating"  rating={item.vote_average/2}/>
+          <Stars title="Your Rating" />          
+          </View>     
         
-        </View>
+        </TouchableOpacity>
       )}
     />
   </View>
