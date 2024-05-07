@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function SignInScreen({route, navigation}) {
  const {setIsLoggedIn} = route.params;
-  const {signInWithGoogle, onforgotPassword, onSignIn,  email, setEmail, password, setPassword} = useContext(AuthContext);
+  const { onforgotPassword, onSignIn,  email, setEmail, password, setPassword} = useContext(AuthContext);
 
 
   
@@ -51,13 +51,13 @@ const handleSignIn = async (e) => {
       onPress={handleSignIn}>
         <Text style={styles.text}>Sign In</Text>
       </Pressable>      
-      <Pressable style={styles.button}      
+      {/* <Pressable style={styles.button}      
       onPress={signInWithGoogle}>
        <View style={styles.iconContainer}>
        <FontAwesome name="google" size={24} color="white" />
        </View>
        <Text style={styles.text}>Sign in with Google</Text>
-      </Pressable>
+      </Pressable> */}
       <View style={{flex: 1, flexDirection: 'row'}}>
       <Pressable onPress={()=> navigation.navigate("SignUp")}       >
         <Text style={{color: 'purple'}}>Sign Up</Text>

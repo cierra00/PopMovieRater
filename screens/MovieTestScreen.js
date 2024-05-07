@@ -10,8 +10,8 @@ const Stack = createStackNavigator();
 const MovieTestScreen = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="MovieList" component={MovieListScreen} />
-      <Stack.Screen name="MovieDetailScreen" component={MovieDetailScreen}/>      
+      <Stack.Screen name="MovieList" component={MovieListScreen} options={{ headerShown:false }} />
+      <Stack.Screen name="MovieDetailScreen" component={MovieDetailScreen}  options={{ headerTitle: '' }}/>      
     </Stack.Navigator>
   );
 }

@@ -18,10 +18,10 @@ export default function HomeScreen({navigation, route}) {
         <Ionicons name="film-outline" color={color} size={size} />
       ),
       headerShown: false }}/>
-            <Tab.Screen name="AddReview" component={ReviewScreen} options={{ title: "Reviews", tabBarIcon: ({ color, size }) => (
+            {/* <Tab.Screen name="AddReview" component={ReviewScreen} options={{ title: "Reviews", tabBarIcon: ({ color, size }) => (
         <Ionicons name="chatbox-ellipses-outline" color={color} size={size} />
       ),
-      headerShown: false}}/>
+      headerShown: false}}/> */}
             <Tab.Screen name="Favorites" navigation={navigation} component={FavoritesScreen} options={{tabBarIcon: ({ color, size }) => (
         <Ionicons name="heart-outline" color={color} size={size} />
       ),

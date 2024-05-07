@@ -51,7 +51,8 @@ return (
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item, index }) => (
         <TouchableOpacity style={styles.item}
-        onPress={()=> navigation.navigate('MovieDetailScreen', {title: item.title, posterPath: item.poster_path})}
+        onPress={()=> navigation.navigate('MovieDetailScreen', {movieId: item.id, title: item.title, overview: item.overview, popularity: item.popularity,
+          backdropPath: item.backdrop_path, genre: item.genres})}
         >
           <Image
             source={{ uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}` }}
@@ -60,7 +61,7 @@ return (
           <View>
           <Text style={styles.title}>{`${index + 1}. ${item.title}`}</Text>
           <Stars title="Average Rating"  rating={item.vote_average/2}/>
-          <Stars title="Your Rating" />          
+                  
           </View>     
         
         </TouchableOpacity>
