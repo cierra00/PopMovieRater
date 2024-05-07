@@ -1,8 +1,1 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyAdxiUe1ic7T24M3nx7ZEyF0aB16uRH2xs",
-  authDomain: "movielist-a5349.firebaseapp.com",
-  projectId: "movielist-a5349",
-  storageBucket: "movielist-a5349.appspot.com",
-  messagingSenderId: "186465524435",
-  appId: "1:186465524435:web:ead450acb2fbcd6eabd226"
-};
+
